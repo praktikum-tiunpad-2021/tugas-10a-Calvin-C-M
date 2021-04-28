@@ -1,0 +1,48 @@
+{
+  // https://code.visualstudio.com/docs/editor/debugging#_launchjson-attributes
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "(gdb) Launch",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/tugas",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Build Debug",
+      "windows": {
+        "program": "${workspaceFolder}\\tugas.exe"
+      }
+    },
+    {
+      "name": "(gdb) Launch Test",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/tugas_test",
+      "args": [],
+      "stopAtEntry": false,
+      "cwd": "${workspaceFolder}",
+      "externalConsole": false,
+      "MIMode": "gdb",
+      "setupCommands": [
+        {
+          "text": "-enable-pretty-printing",
+          "ignoreFailures": true
+        }
+      ],
+      "preLaunchTask": "Build Test Debug",
+      "windows": {
+        "program": "${workspaceFolder}\\tugas_test.exe"
+      }
+    }
+  ]
+}

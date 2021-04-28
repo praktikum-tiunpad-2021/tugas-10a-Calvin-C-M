@@ -1,0 +1,16 @@
+{
+  // https://code.visualstudio.com/docs/editor/tasks
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Build Debug",
+      "type": "shell",
+      "command": "make tugas"
+    },
+    {
+      "label": "Build Test Debug",
+      "type": "shell",
+      "command": "make tugas_test"
+    }
+  ]
+}
