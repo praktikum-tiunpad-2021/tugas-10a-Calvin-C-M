@@ -1,0 +1,44 @@
+{
+  "tests": [
+    {
+      "name": "Tambah dan Hapus Vertex",
+      "setup": "",
+      "run": "make test spec=\"[case_1]\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 10
+    },
+    {
+      "name": "Tambah dan Hapus Edge",
+      "setup": "",
+      "run": "make test spec=\"[case_2]\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 30
+    },
+    {
+      "name": "BFS",
+      "setup": "",
+      "run": "make test spec=\"[case_3]\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 30
+    },
+    {
+      "name": "DFS",
+      "setup": "",
+      "run": "make test spec=\"[case_4]\"",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 30
+    }
+  ]
+}
