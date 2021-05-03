@@ -4,7 +4,7 @@
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
-#include <queue>
+#include <stack>
 
 namespace strukdat {
 
@@ -121,19 +121,28 @@ class graph {
    */
   void bfs(const VertexType &root,
            std::function<void(const VertexType &)> func) const {
-    std::vector<bool> visited(_adj_list.size(), false);
+
+    adj_list_type adj_temp = _adj_list;
+    std::unordered_map<VertexType, bool> visited;
+    for(auto i = adj_temp.begin(); i != adj_temp.end(); i++)
+    {
+      visited.insert(std::make_pair(i->first, false));
+    }
+    
     std::vector<VertexType> q;
-    q.push_back(root);
-    visited[root] = true;
+    VertexType key = root;
+    q.push_back(key);
+    visited[key] = true;
+				
     while(!q.empty())
     {
-      VertexType key = q.front();
+      key = q.front();
       q.erase(q.begin());
       func(key);
-
-      for(auto i = _adj_list.at(key).begin(); i != _adj_list.at(key).end(); i++)
+      
+      for(auto i = adj_temp[key].begin(); i != adj_temp[key].end(); i++)
       {
-        if(!visited[*i])
+        if(visited[*i] == false)
         {
           visited[*i] = true;
           q.push_back(*i);
@@ -150,37 +159,31 @@ class graph {
    */
   void dfs(const VertexType &root,
            std::function<void(const VertexType &)> func) const {
-
-    std::vector<VertexType> visited(_adj_list.size(), false);
-
-    std::vector<VertexType> stack;
-    stack.insert(stack.begin(), root);  
-
-    while(!stack.empty())
+    std::unordered_map<VertexType, bool> visited;
+    for (auto i = _adj_list.begin(); i != _adj_list.end(); i++) 
     {
-      VertexType key = stack.front();
-      if(!visited[root])
+      visited.insert(std::make_pair(i->first, false));
+    }
+
+    std::stack<VertexType> stack;
+    stack.push(root);
+    while (!stack.empty())
+    {
+      VertexType key = stack.top();
+      stack.pop();
+
+      if (!visited[key]) 
       {
-        visited[key] = true;
         func(key);
+        visited[key] = true;
       }
 
-      auto i = _adj_list.at(key).begin();
-      while(i != _adj_list.at(key).end())
+      for (auto i = _adj_list.at(key).begin(); i != _adj_list.at(key).end(); i++)
       {
-        if(!visited[*i])
+        if (!visited[*i])
         {
-          key = *i;
-          stack.insert(stack.begin(), key);
-          break;
+          stack.push(*i);
         }
-        i++;
-      }
-
-      if(i == _adj_list.at(key).end())
-      {
-        key = stack.front();
-        stack.erase(stack.begin());
       }
     }
   }
